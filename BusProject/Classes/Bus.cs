@@ -6,6 +6,11 @@ namespace BusProject.Classes
 {
     public class Bus
     {
-        int id_bus;
+        public string id_bus;
+
+        public Bus(string Id_Bus)
+        {
+            id_bus = Id_Bus;
+        }
     }
 }

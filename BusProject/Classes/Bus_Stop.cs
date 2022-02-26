@@ -6,7 +6,7 @@ namespace BusProject.Classes
 {
     public class Bus_Stop
     {
-        int id_stop;
-        int id_bus;
+        string id_bus;
+        string stopName;
     }
 }
