@@ -16,12 +16,11 @@ namespace BusProject
         
         static void Main(string[] args)
         {
-            Dictionary<string, string> Bus_Stop = new Dictionary<string, string>();
-
+            Dictionary<string, HashSet<string>> Bus_Stop = new Dictionary<string, HashSet<string>>();
+            Dictionary<string, HashSet<string>> Stop_Bus = new Dictionary<string, HashSet<string>>();
             List <Bus> bus = addBus();
             
-
-            _fileName = @"C:\Users\nasur\Downloads\2_5231411608390997991.xlsx";
+            _fileName = @"C:\Users\nasur\Desktop\рпм.xlsx";
 
             Excel.Application ObjWorkExcel = new Microsoft.Office.Interop.Excel.Application();
             Excel.Workbook ObjWorkBook = ObjWorkExcel.Workbooks.Open(_fileName);
@@ -32,7 +31,7 @@ namespace BusProject
 
             int lastColumn = (int)lastCell.Column;
             int lastRow = (int)lastCell.Row;
-            string[,] list = new string[lastRow+1, lastColumn+1];
+            string[,] bus_stop = new string[lastRow, lastColumn];
             for (int j = 0; j < 2; j++)
             {
                 //по всем колонкам
@@ -40,15 +39,39 @@ namespace BusProject
                 {
                     // по всем строкам
                     forYach = ObjWorkSheet.Cells[i + 1, j + 1] as Excel.Range;
-                    list[i, j] = forYach.Value2.ToString();
-                    //Bus_Stop.Add(forYach.Value2.ToString(), forYach.Value2.ToString());
+                    bus_stop[i, j] = forYach.Value2.ToString();
                 }
             }
-            foreach(var i in list)
+            foreach (var i in bus_stop)
             {
                 Console.WriteLine(i);
             }
-            
+
+
+            Excel.Worksheet ObjWorkSheet2 = ObjWorkBook.Sheets[2]; //получить 1-й лист
+            var lastCell2 = ObjWorkSheet2.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell);//последнюю ячейку
+
+            Excel.Range forYach2;
+
+            int lastColumn2 = (int)lastCell2.Column;
+            int lastRow2 = (int)lastCell2.Row;
+            string[,] stop_bus = new string[lastRow2, lastColumn2];
+            for (int j = 0; j < 2; j++)
+            {
+                //по всем колонкам
+                for (int i = 0; i < lastRow2; i++)
+                {
+                    // по всем строкам
+                    forYach2 = ObjWorkSheet2.Cells[i + 1, j + 1] as Excel.Range;
+                    stop_bus[i, j] = forYach2.Value2.ToString();
+                }
+            }
+
+            foreach (var i in stop_bus)
+            {
+                Console.WriteLine(i);
+            }
+
         }
 
         private static void OpenExcelFile(string FilePath)
