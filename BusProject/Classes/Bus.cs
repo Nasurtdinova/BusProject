@@ -7,7 +7,10 @@ namespace BusProject.Classes
     public class Bus
     {
         public string id_bus;
+        public Bus()
+        {
 
+        }
         public Bus(string Id_Bus)
         {
             id_bus = Id_Bus;
