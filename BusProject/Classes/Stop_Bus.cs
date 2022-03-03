@@ -19,10 +19,10 @@ namespace BusProject.Classes
                 throw new Exception();
         }
 
-        public string Message(string stop)
+        public string Message(string bus)
         {
             string s = "";
-            foreach (var i in STOPS_FOR_BUS(stop))
+            foreach (var i in STOPS_FOR_BUS(bus))
             {
                 s = $"{s} {i}";
             }
