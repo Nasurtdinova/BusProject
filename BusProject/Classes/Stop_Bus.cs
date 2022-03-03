@@ -4,17 +4,17 @@ using System.Text;
 
 namespace BusProject.Classes
 {
-    public class Bus_Stop : Bus
+    public class Stop_Bus : Bus
     {
-        public Bus_Stop(Bus bus) 
+        public Stop_Bus(Bus bus)
         {
-            this.stop_bus = bus.stop_bus;
+            this.bus_stop = bus.bus_stop;
         }
 
-        public HashSet<string> BUSES_FOR_STOP(string stop)
+        public HashSet<string> STOPS_FOR_BUS(string bus)
         {
-            if (stop_bus.ContainsKey(stop))
-                return stop_bus[stop];
+            if (bus_stop.ContainsKey(bus))
+                return bus_stop[bus];
             else
                 throw new Exception();
         }
@@ -22,7 +22,7 @@ namespace BusProject.Classes
         public string Message(string stop)
         {
             string s = "";
-            foreach (var i in BUSES_FOR_STOP(stop))
+            foreach (var i in STOPS_FOR_BUS(stop))
             {
                 s = $"{s} {i}";
             }

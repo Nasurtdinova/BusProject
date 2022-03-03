@@ -12,63 +12,43 @@ namespace BusProject
     class Program
     {
         private static string _fileName = string.Empty;
-        
+
         static void Main(string[] args)
         {
             Dictionary<string, HashSet<string>> Bus_Stop = new Dictionary<string, HashSet<string>>();
-            Dictionary<string, HashSet<string>> Stop_Bus = new Dictionary<string, HashSet<string>>();         
+            Dictionary<string, HashSet<string>> Stop_Bus = new Dictionary<string, HashSet<string>>();
 
-            _fileName = @"C:\Users\nasur\Desktop\КопияРпм.xlsx";
-
-            Excel.Application ObjWorkExcel = new Microsoft.Office.Interop.Excel.Application();
-            Excel.Workbook ObjWorkBook = ObjWorkExcel.Workbooks.Open(_fileName);
-            Excel.Worksheet ObjWorkSheet = ObjWorkBook.Sheets[1]; //получить 1-й лист
-            var lastCell = ObjWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell);//последнюю ячейку
-            
-            Excel.Range forYach;
-            Excel.Range forYach2;
-
-            int lastRow = (int)lastCell.Row;
-            for (int i = 0; i < 161; i++)
+            string line;
+            Bus bus = new Bus();
+            while ((line = Console.ReadLine()) != null)
             {
-                HashSet<string> stop = new HashSet<string>();
-                forYach = ObjWorkSheet.Cells[i + 1, 1] as Excel.Range;
-                forYach2 = ObjWorkSheet.Cells[i + 1, 2] as Excel.Range;
-                if (Bus_Stop.ContainsKey(forYach.Value2.ToString()))
+                string[] command = line.Split();
+                switch (command[0].ToUpper())
                 {
-                    Bus_Stop[forYach.Value2.ToString()].Add(forYach2.Value2.ToString());
+                    case "NEW_BUS":
+                        string[] mas = new string[Convert.ToInt32(command[2])];
+                        for (int i = 0; i < command.Length - 3; i++)
+                        {
+                            mas[i] = command[3 + i];
+                        }
+                        bus.AddNewBus(command[1], Convert.ToInt32(command[2]), mas);
+                        break;
+                    case "BUSES_FOR_STOP":
+                        Bus_Stop busStop = new Bus_Stop(bus);
+                        Console.WriteLine(busStop.Message(command[1]));
+                        break;
+                    case "STOPS_FOR_BUS":
+                        Stop_Bus stopBus = new Stop_Bus(bus);
+                        Console.WriteLine(stopBus.Message(command[1]));
+                        break;
+                    case "ALL_BUSES":
+                        foreach (var i in bus.ALL_BUSES())
+                        {
+                            Console.WriteLine(i);
+                        }
+                        break;
                 }
-                else
-                {
-                    stop.Add(forYach2.Value2.ToString());
-                    Bus_Stop.Add(forYach.Value2.ToString(), stop);
-                }               
             }
-            foreach (var i in Bus_Stop)
-            {
-                Console.WriteLine(i.Key);
-            }
-
-            //Excel.Worksheet ObjWorkSheet2 = ObjWorkBook.Sheets[2]; //получить 2-й лист
-            //for (int i = 0; i < 400; i++)
-            //{
-            //    HashSet<string> bus = new HashSet<string>();
-            //    forYach = ObjWorkSheet2.Cells[i + 1, 1] as Excel.Range;
-            //    forYach2 = ObjWorkSheet2.Cells[i + 1, 2] as Excel.Range;
-            //    if (Stop_Bus.ContainsKey(forYach.Value2.ToString()))
-            //    {
-            //        Stop_Bus[forYach.Value2.ToString()].Add(forYach2.Value2.ToString());
-            //    }
-            //    else
-            //    {
-            //        bus.Add(forYach2.Value2.ToString());
-            //        Stop_Bus.Add(forYach.Value2.ToString(), bus);
-            //    }                
-            //}
-            //foreach (var i in Stop_Bus)
-            //{
-            //    Console.WriteLine(i.Key);
-            //}
         }
 
         static List<Stop> AddStop()
@@ -116,7 +96,7 @@ namespace BusProject
                 forYach = ObjWorkSheet.Cells[i + 1, 1] as Excel.Range;
                 Bus bus = new Bus()
                 {
-                    id_bus = forYach.Value2.ToString()
+                    NameBus = forYach.Value2.ToString()
                 };
                 buses.Add(bus);
             }           
