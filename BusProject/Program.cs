@@ -20,25 +20,23 @@ namespace BusProject
                 string[] command = line.Split();
                 switch (command[0].ToUpper())
                 {
-                    case "NEW_BUS":
-                        string[] mas = new string[Convert.ToInt32(command[2])];
-                        for (int i = 0; i < command.Length - 3; i++)
-                        {
-                            mas[i] = command[3 + i];
-                        }
-                        bus.AddNewBus(command[1], Convert.ToInt32(command[2]), mas);
+                    case "NEW_BUS":                       
+                        bus.AddNewBus(command[1], Convert.ToInt32(command[2]), command);
                         break;
                     case "BUSES_FOR_STOP":
                         Bus_Stop busStop = new Bus_Stop(bus);
-                        Console.WriteLine(busStop.PrintBusesForStop(command[1]));
+                        Console.WriteLine(busStop.BusesForStop(command[1]));
                         break;
                     case "STOPS_FOR_BUS":
                         Stop_Bus stopBus = new Stop_Bus(bus);
-                        Console.WriteLine(stopBus.PrintStopsForBus(command[1]));
+                        Console.Write(stopBus.StopsForBus(command[1]));
                         break;
                     case "ALL_BUSES":
                         AllBuses allBuses = new AllBuses(bus);
                         Console.WriteLine(allBuses.ToString());
+                        break;
+                    default:
+                        Console.WriteLine("Unknown command");
                         break;
                 }
             }

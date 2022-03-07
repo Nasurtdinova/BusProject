@@ -11,22 +11,19 @@ namespace BusProject.Classes
             this.stop_bus = bus.stop_bus;
         }
 
-        private HashSet<string> BusesForStop(string stop)
-        {
-            if (stop_bus.ContainsKey(stop))
-                return stop_bus[stop];
-            else
-                throw new Exception("No stop");
-        }
-
-        public string PrintBusesForStop(string stop)
+        public string BusesForStop(string stop)
         {
             string s = String.Empty;
-            foreach (var i in BusesForStop(stop))
+            if (stop_bus.ContainsKey(stop))
             {
-                s = $"{s}{i} ";
+                foreach (var i in stop_bus[stop])
+                {
+                    s = $"{s}{i} ";
+                }
+                return s;
             }
-            return s;
+            else
+                return "No stop";
         }
     }
 }

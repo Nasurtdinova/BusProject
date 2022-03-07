@@ -12,32 +12,30 @@ namespace BusProject.Classes
             this.stop_bus = bus.stop_bus;
         }
 
-        public HashSet<string> StopsForBus(string bus)
+        public string StopsForBus(string bus)
         {
             if (bus_stop.ContainsKey(bus))
-                return bus_stop[bus];
-            else
-                throw new Exception("No bus");
-        }
-
-        public string PrintStopsForBus(string bus)
-        {
-            string s = String.Empty;
-            foreach (var i in StopsForBus(bus))
             {
-                string k = String.Empty;
-                foreach (var j in stop_bus[i])
+                string s = String.Empty;
+                foreach (var i in bus_stop[bus])
                 {
-                    if (stop_bus[i].Count == 1 && j == bus)
-                        k = "no interchange";
-                    else if (j == bus)
-                        continue;
-                    else
-                        k = $"{k}{j} ";
+                    string k = String.Empty;
+                    foreach (var j in stop_bus[i])
+                    {
+                        if (stop_bus[i].Count == 1 && j == bus)
+                            k = "no interchange";
+                        else if (j == bus)
+                            continue;
+                        else
+                            k = $"{k}{j} ";
+                    }
+                    s = $"{s}Stop {i}: {k}{Environment.NewLine}";
                 }
-                s = $"{s}Stop {i}: {k}{Environment.NewLine}";
+                return s;
             }
-            return s;
+                
+            else
+                return "No bus";
         }
     }
 }
