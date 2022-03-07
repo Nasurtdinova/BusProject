@@ -5,26 +5,43 @@ using System.Text;
 namespace BusProject.Classes
 {
     public class AllBuses : Bus
-    {
+    {       
         public AllBuses(Bus bus)
         {
             this.bus_stop = bus.bus_stop;
         }
 
         public List<string> ALL_BUSES()
-        {
+        {            
+            string line = String.Empty;
             List<string> str = new List<string>();
-            string line = "";
             foreach (var i in bus_stop)
             {
-                foreach (var j in bus_stop.Values)
+                foreach (var j in i.Value)
                 {
-                    line = line + " " + j.ToString();
+                    line = $"{line} {j.ToString()}";
                 }
-                str.Add($"{i.Key} {line}");
-                line = " ";
+                str.Add($"{i.Key}:{line}");
+                line = String.Empty;
             }
             return str;
+        }
+
+        public override string ToString()
+        {
+            if (bus_stop.Count == 0)
+            {
+                return "No buses";
+            }
+            else
+            {
+                string s = String.Empty;
+                foreach (var i in ALL_BUSES())
+                {
+                    s = $"Bus {i}{Environment.NewLine}{s}";
+                }
+                return s;
+            }
         }
     }
 }

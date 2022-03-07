@@ -13,9 +13,6 @@ namespace BusProject
     {
         static void Main(string[] args)
         {
-            Dictionary<string, HashSet<string>> Bus_Stop = new Dictionary<string, HashSet<string>>();
-            Dictionary<string, HashSet<string>> Stop_Bus = new Dictionary<string, HashSet<string>>();
-
             string line;
             Bus bus = new Bus();
             while ((line = Console.ReadLine()) != null)
@@ -33,17 +30,15 @@ namespace BusProject
                         break;
                     case "BUSES_FOR_STOP":
                         Bus_Stop busStop = new Bus_Stop(bus);
-                        Console.WriteLine(busStop.Message(command[1]));
+                        Console.WriteLine(busStop.PrintBusesForStop(command[1]));
                         break;
                     case "STOPS_FOR_BUS":
                         Stop_Bus stopBus = new Stop_Bus(bus);
-                        Console.WriteLine(stopBus.Message(command[1]));
+                        Console.WriteLine(stopBus.PrintStopsForBus(command[1]));
                         break;
                     case "ALL_BUSES":
-                        foreach (var i in bus.ALL_BUSES())
-                        {
-                            Console.WriteLine(i);
-                        }
+                        AllBuses allBuses = new AllBuses(bus);
+                        Console.WriteLine(allBuses.ToString());
                         break;
                 }
             }

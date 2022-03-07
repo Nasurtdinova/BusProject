@@ -8,7 +8,6 @@ namespace BusProject.Classes
     {
         public Dictionary<string, HashSet<string>> bus_stop;
         public Dictionary<string, HashSet<string>> stop_bus;
-        public string NameBus { get; set; }
 
         public Bus() 
         {
@@ -30,24 +29,6 @@ namespace BusProject.Classes
                     stop_bus.Add(i, new HashSet<string> { nameBus });             
             }
             bus_stop.Add(nameBus, stop);
-        }
-
-      
-
-        public List<string> ALL_BUSES()
-        {
-            List<string> str = new List<string>();
-            string line = "";
-            foreach(var i in bus_stop)
-            {
-                foreach(var j in bus_stop.Values)
-                {
-                     line = line + " " + j.ToString();
-                }
-                str.Add($"{i.Key} {i.Value} {line}");
-                line = " ";
-            }
-            return str;
-        }
+        }     
     }
 }

@@ -9,6 +9,7 @@ namespace BusProject.Classes
         public Stop_Bus(Bus bus)
         {
             this.bus_stop = bus.bus_stop;
+            this.stop_bus = bus.stop_bus;
         }
 
         public HashSet<string> StopsForBus(string bus)
@@ -21,10 +22,20 @@ namespace BusProject.Classes
 
         public string PrintStopsForBus(string bus)
         {
-            string s = "";
+            string s = String.Empty;
             foreach (var i in StopsForBus(bus))
             {
-                s = $"{s} {i}";
+                string k = String.Empty;
+                foreach (var j in stop_bus[i])
+                {
+                    if (stop_bus[i].Count == 1 && j == bus)
+                        k = "no interchange";
+                    else if (j == bus)
+                        continue;
+                    else
+                        k = $"{k}{j} ";
+                }
+                s = $"{s}Stop {i}: {k}{Environment.NewLine}";
             }
             return s;
         }
