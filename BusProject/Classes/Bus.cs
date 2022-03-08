@@ -15,6 +15,16 @@ namespace BusProject.Classes
             stop_bus = new Dictionary<string, HashSet<string>>();
         }
 
+        public bool AreBusStops(string bus, string stop)
+        {
+            return bus_stop.ContainsKey(bus) ? bus_stop[bus].Contains(stop) : false;
+        }
+
+        public bool AreStopBusses(string stop, string bus)
+        {
+            return stop_bus.ContainsKey(stop) ? stop_bus[stop].Contains(bus) : false;
+        }
+
         public void AddNewBus(string[] command)
         {
             string nameBus = command[1];

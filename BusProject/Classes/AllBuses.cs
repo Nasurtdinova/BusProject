@@ -38,7 +38,7 @@ namespace BusProject.Classes
                 string s = String.Empty;
                 foreach (var i in ALL_BUSES())
                 {
-                    s = $"{s}Bus {i}{Environment.NewLine}";
+                    s = $"Bus {i}{Environment.NewLine}{s}";
                 }
                 return s;
             }

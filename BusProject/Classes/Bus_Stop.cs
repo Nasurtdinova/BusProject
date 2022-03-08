@@ -11,6 +11,11 @@ namespace BusProject.Classes
             this.stop_bus = bus.stop_bus;
         }
 
+        public int GetBusCount(string stop)
+        {
+            return stop_bus.ContainsKey(stop) ? stop_bus[stop].Count : 0;
+        }
+
         public string BusesForStop(string stop)
         {
             string s = String.Empty;
