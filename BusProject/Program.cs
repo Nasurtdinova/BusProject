@@ -21,7 +21,7 @@ namespace BusProject
                 switch (command[0].ToUpper())
                 {
                     case "NEW_BUS":                       
-                        bus.AddNewBus(command[1], Convert.ToInt32(command[2]), command);
+                        bus.AddNewBus(command);
                         break;
                     case "BUSES_FOR_STOP":
                         Bus_Stop busStop = new Bus_Stop(bus);
@@ -33,8 +33,9 @@ namespace BusProject
                         break;
                     case "ALL_BUSES":
                         AllBuses allBuses = new AllBuses(bus);
-                        Console.WriteLine(allBuses.ToString());
+                        Console.Write(allBuses.ToString());
                         break;
+
                     default:
                         Console.WriteLine("Unknown command");
                         break;

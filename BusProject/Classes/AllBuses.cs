@@ -31,7 +31,7 @@ namespace BusProject.Classes
         {
             if (bus_stop.Count == 0)
             {
-                return "No buses";
+                return $"No buses{Environment.NewLine}";
             }
             else
             {

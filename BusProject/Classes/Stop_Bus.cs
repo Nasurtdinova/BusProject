@@ -35,7 +35,7 @@ namespace BusProject.Classes
             }
                 
             else
-                return "No bus";
+                return $"No bus{Environment.NewLine}";
         }
     }
 }
