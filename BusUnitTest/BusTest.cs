@@ -66,18 +66,16 @@ namespace BusUnitTest
         public void TestAllBusses()
         {
             Bus bus = new Bus();
-            Bus_Stop busStop = new Bus_Stop(bus);
-            Stop_Bus stopBus = new Stop_Bus(bus);
+
             string line = "NEW_BUS 32 3 Tolstopaltsevo Marushkino Vnukovo";
             string line2 = "NEW_BUS 32K 6 Tolstopaltsevo Marushkino Vnukovo Peredelkino Solntsevo Skolkovo";
             bus.AddNewBus(line.Split());
             bus.AddNewBus(line2.Split());
             AllBuses allBuses = new AllBuses(bus);
-
             
             List<string> allBussesCheck = new List<string>();
-            allBussesCheck.Add("32");
-            allBussesCheck.Add("32K");
+            allBussesCheck.Add("32:Tolstopaltsevo Marushkino Vnukovo");
+            allBussesCheck.Add("32K:Tolstopaltsevo Marushkino Vnukovo Peredelkino Solntsevo Skolkovo");
             Assert.AreEqual(allBussesCheck.Count, allBuses.bus_stop.Count);
         }
     }
