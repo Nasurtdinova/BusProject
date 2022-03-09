@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BusStopsProject
-{
+{ 
+    using DictOfSet = Dictionary<string, HashSet<string>>;
     public class Bus
     {
-        public Dictionary<string, HashSet<string>> bus_stop;
+        public DictOfSet bus_stop;
         public Dictionary<string, HashSet<string>> stop_bus;
 
         public Bus()
@@ -40,7 +41,6 @@ namespace BusStopsProject
             {
                 Console.WriteLine("Unable to add");
             }
-
             else
             {
                 HashSet<string> stop = new HashSet<string>();
