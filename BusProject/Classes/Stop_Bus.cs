@@ -22,19 +22,19 @@ namespace BusProject.Classes
             if (bus_stop.ContainsKey(bus))
             {
                 string s = String.Empty;
-                foreach (var i in bus_stop[bus])
+                foreach (var stops in bus_stop[bus])
                 {
                     string k = String.Empty;
-                    foreach (var j in stop_bus[i])
+                    foreach (var buses in stop_bus[stops])
                     {
-                        if (stop_bus[i].Count == 1 && j == bus)
+                        if (stop_bus[stops].Count == 1 && buses == bus)
                             k = "no interchange";
-                        else if (j == bus)
+                        else if (buses == bus)
                             continue;
                         else
-                            k = $"{k}{j} ";
+                            k = $"{k}{buses} ";
                     }
-                    s = $"{s}Stop {i}: {k}{Environment.NewLine}";
+                    s = $"{s}Stop {stops}: {k}{Environment.NewLine}";
                 }
                 return s;
             }

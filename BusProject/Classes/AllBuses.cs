@@ -15,7 +15,8 @@ namespace BusProject.Classes
         {            
             string line = String.Empty;
             List<string> str = new List<string>();
-            foreach (var i in bus_stop)
+            var sorted = new SortedDictionary<string, HashSet<string>>(bus_stop);
+            foreach (var i in sorted)
             {
                 foreach (var j in i.Value)
                 {
@@ -35,10 +36,11 @@ namespace BusProject.Classes
             }
             else
             {
+
                 string s = String.Empty;
                 foreach (var i in ALL_BUSES())
                 {
-                    s = $"Bus {i}{Environment.NewLine}{s}";
+                    s = $"{s}Bus {i}{Environment.NewLine}";
                 }
                 return s;
             }

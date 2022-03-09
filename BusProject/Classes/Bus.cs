@@ -35,20 +35,25 @@ namespace BusProject.Classes
             {
                 stops[i] = command[3 + i];
             }
-          
-            if (stopCount != stops.Length || stopCount == 0 || bus_stop.ContainsKey(nameBus))
-                throw new Exception();
 
-            HashSet<string> stop = new HashSet<string>();
-            foreach (var i  in stops)
+            if (stopCount != stops.Length || stopCount == 0 || bus_stop.ContainsKey(nameBus))
             {
-                stop.Add(i);
-                if (stop_bus.ContainsKey(i))
-                    stop_bus[i].Add(nameBus);
-                else
-                    stop_bus.Add(i, new HashSet<string> { nameBus });             
+                Console.WriteLine("Unable to add");
             }
-            bus_stop.Add(nameBus, stop);
+
+            else
+            {
+                HashSet<string> stop = new HashSet<string>();
+                foreach (var i in stops)
+                {
+                    stop.Add(i);
+                    if (stop_bus.ContainsKey(i))
+                        stop_bus[i].Add(nameBus);
+                    else
+                        stop_bus.Add(i, new HashSet<string> { nameBus });
+                }
+                bus_stop.Add(nameBus, stop);
+            }
         }     
     }
 }
