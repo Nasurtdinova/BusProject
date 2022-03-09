@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BusProject.Classes
+namespace BusStopsProject
 {
     public class Bus_Stop : Bus
     {
-        public Bus_Stop(Bus bus) 
+        public Bus_Stop(Bus bus)
         {
             this.stop_bus = bus.stop_bus;
         }

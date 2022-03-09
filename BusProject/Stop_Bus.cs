@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BusProject.Classes
+namespace BusProject
 {
     public class Stop_Bus : Bus
     {
@@ -38,7 +38,7 @@ namespace BusProject.Classes
                 }
                 return s;
             }
-                
+
             else
                 return $"No bus{Environment.NewLine}";
         }

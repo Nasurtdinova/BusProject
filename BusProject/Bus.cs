@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BusProject.Classes
+namespace BusProject
 {
     public class Bus
     {
         public Dictionary<string, HashSet<string>> bus_stop;
         public Dictionary<string, HashSet<string>> stop_bus;
 
-        public Bus() 
+        public Bus()
         {
             bus_stop = new Dictionary<string, HashSet<string>>();
             stop_bus = new Dictionary<string, HashSet<string>>();
@@ -54,6 +54,6 @@ namespace BusProject.Classes
                 }
                 bus_stop.Add(nameBus, stop);
             }
-        }     
+        }
     }
 }

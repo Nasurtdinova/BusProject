@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusProject.Classes;
+using BusStopsProject;
 using System;
 
 namespace BusUnitTest

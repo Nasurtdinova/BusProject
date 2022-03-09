@@ -1,13 +1,6 @@
-﻿using BusProject.Classes;
-using System.Collections.Generic;
-using Excel = Microsoft.Office.Interop.Excel;
-using System;
-using System.Linq;
-using System.IO;
-using System.Data;
-using ExcelDataReader;
+﻿using System;
 
-namespace BusProject
+namespace BusStopsProject
 {
     class Program
     {
@@ -20,7 +13,7 @@ namespace BusProject
                 string[] command = line.Split();
                 switch (command[0].ToUpper())
                 {
-                    case "NEW_BUS":                       
+                    case "NEW_BUS":
                         bus.AddNewBus(command);
                         break;
                     case "BUSES_FOR_STOP":

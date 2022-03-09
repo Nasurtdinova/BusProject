@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BusProject.Classes
+namespace BusProject
 {
     public class AllBuses : Bus
-    {       
+    {
         public AllBuses(Bus bus)
         {
             this.bus_stop = bus.bus_stop;
         }
 
         public List<string> ALL_BUSES()
-        {            
+        {
             string line = String.Empty;
             List<string> str = new List<string>();
             var sorted = new SortedDictionary<string, HashSet<string>>(bus_stop);
