@@ -6,29 +6,29 @@ namespace BusStopsProject
 {
     public class Bus_Stop : Bus
     {
-        public Bus_Stop(Bus bus)
+        private string Stop { get; set; }
+
+        public Bus_Stop(Bus bus, string stop)
         {
             this.stop_bus = bus.stop_bus;
+            Stop = stop;
         }
 
-        public int GetBusCount(string stop)
+        public List<string> BusesForStop(string stop)
         {
-            return stop_bus.ContainsKey(stop) ? stop_bus[stop].Count : 0;
-        }
-
-        public string BusesForStop(string stop)
-        {
-            string s = String.Empty;
-            if (stop_bus.ContainsKey(stop))
-            {
+            List<string> buses = new List<string>();
+            if (stop_bus.ContainsKey(Stop))
                 foreach (var i in stop_bus[stop])
-                {
-                    s = $"{s}{i} ";
-                }
-                return s;
-            }
+                    buses.Add(i);
             else
-                return "No stop";
+                buses.Add("No stop");
+
+            return buses;                       
+        }
+
+        public override string ToString()
+        {
+            return string.Join(" ", BusesForStop(Stop).ToArray());
         }
     }
 }

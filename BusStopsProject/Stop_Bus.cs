@@ -6,41 +6,47 @@ namespace BusStopsProject
 {
     public class Stop_Bus : Bus
     {
-        public Stop_Bus(Bus bus)
+        private string NameBus { get; set; }
+
+        public Stop_Bus(Bus bus,string nameBus)
         {
             this.bus_stop = bus.bus_stop;
             this.stop_bus = bus.stop_bus;
+            NameBus = nameBus;
         }
 
-        public int GetStopCount(string bus)
+        public List<string> StopsForBus()
         {
-            return bus_stop.ContainsKey(bus) ? bus_stop[bus].Count : 0;
-        }
+            List<string> result = new List<string>();
 
-        public string StopsForBus(string bus)
-        {
-            if (bus_stop.ContainsKey(bus))
+            if (bus_stop.ContainsKey(NameBus))
             {
                 string s = String.Empty;
-                foreach (var stops in bus_stop[bus])
+                foreach (var stops in bus_stop[NameBus])
                 {
                     string k = String.Empty;
                     foreach (var buses in stop_bus[stops])
                     {
-                        if (stop_bus[stops].Count == 1 && buses == bus)
+                        if (stop_bus[stops].Count == 1 && buses == NameBus)
                             k = "no interchange";
-                        else if (buses == bus)
+                        else if (buses == NameBus)
                             continue;
                         else
                             k = $"{k}{buses} ";
                     }
-                    s = $"{s}Stop {stops}: {k}{Environment.NewLine}";
+                    s = $"Stop {stops}: {k}";
+                    result.Add(s);
                 }
-                return s;
             }
-
             else
-                return $"No bus{Environment.NewLine}";
+                result.Add("No bus");
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            return string.Join(Environment.NewLine, StopsForBus().ToArray());
         }
     }
 }

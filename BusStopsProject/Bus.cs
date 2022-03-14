@@ -8,12 +8,22 @@ namespace BusStopsProject
     public class Bus
     {
         public DictOfSet bus_stop;
-        public Dictionary<string, HashSet<string>> stop_bus;
+        public DictOfSet stop_bus;
 
         public Bus()
         {
-            bus_stop = new Dictionary<string, HashSet<string>>();
-            stop_bus = new Dictionary<string, HashSet<string>>();
+            bus_stop = new DictOfSet();
+            stop_bus = new DictOfSet();
+        }
+
+        public int GetBusCount(string stop)
+        {
+            return stop_bus.ContainsKey(stop) ? stop_bus[stop].Count : 0;
+        }
+
+        public int GetStopCount(string bus)
+        {
+            return bus_stop.ContainsKey(bus) ? bus_stop[bus].Count : 0;
         }
 
         public bool AreBusStops(string bus, string stop)
@@ -26,20 +36,11 @@ namespace BusStopsProject
             return stop_bus.ContainsKey(stop) ? stop_bus[stop].Contains(bus) : false;
         }
 
-        public void AddNewBus(string[] command)
+        public void AddNewBus(string nameBus,int stopCount,string[] stops)
         {
-            string nameBus = command[1];
-            int stopCount = Convert.ToInt32(command[2]);
-            string[] stops = new string[Convert.ToInt32(command[2])];
-
-            for (int i = 0; i < command.Length - 3; i++)
-            {
-                stops[i] = command[3 + i];
-            }
-
             if (stopCount != stops.Length || stopCount == 0 || bus_stop.ContainsKey(nameBus))
             {
-                Console.WriteLine("Unable to add");
+                throw new Exception("Unable to add");
             }
             else
             {
